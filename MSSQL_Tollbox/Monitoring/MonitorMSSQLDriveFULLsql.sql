@@ -10,7 +10,7 @@ declare @EmailSubject varchar(100)
 declare @EmailBody varchar(1000)
 
 --set variables
-set @DriveSpaceThreshold = 10000 -- aqui estou definindo que o limite é 10GB! Menos que isso vai ALERTAR@
+set @DriveSpaceThreshold = 2000000
 set @EmailSubject = 'Drive Full Alert'
 set @EmailBody = 'The following drive(s) are full: '
 
@@ -45,14 +45,14 @@ deallocate DriveCursor
 if @EmailBody <> 'The following drive(s) are full: '
 begin
 exec msdb..sp_send_dbmail
-@profile_name = 'dba_profile', -- tem que estar criado no teu servidor :)
+@profile_name = 'you_profile_here',
 @recipients = 'dbaFodao@empresa.com.br',
 @subject = @EmailSubject,
 @body = @EmailBody
 end
-
+else
+print 'NO ISSUES!'
 --drop the temp table
 drop table #DriveSpace
 
 --end of script
-
