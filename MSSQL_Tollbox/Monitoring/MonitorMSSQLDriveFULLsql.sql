@@ -10,7 +10,7 @@ declare @EmailSubject varchar(100)
 declare @EmailBody varchar(1000)
 
 --set variables
-set @DriveSpaceThreshold = 10000
+set @DriveSpaceThreshold = 10000 -- aqui estou definindo que o limite é 10GB! Menos que isso vai ALERTAR@
 set @EmailSubject = 'Drive Full Alert'
 set @EmailBody = 'The following drive(s) are full: '
 
