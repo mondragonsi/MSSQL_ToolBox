@@ -26,4 +26,53 @@ az backup job list `
 --operation Backup `
 --status InProgress  `
 --output table  `
-| Out-GridView                                                           
+| Out-GridView
+
+
+###############REAL EXAMPLE BELOW###############3
+
+$dbName          = "myDB"
+$ItemName        = "SQLDataBase;AGPRD;"
+$AGNameContainer = "SQLAGWorkLoadContainer;XXXXXX-xxxx-xxxx-xxxx-6xxxxxxxxxc" 
+$finalName       = $ItemName + $dbName
+
+Write-Host $finalName
+
+az backup protection backup-now `
+--resource-group rg-myDB-prd `
+--item-name $finalName `
+--vault-name recover-prd `
+--container-name $AGNameContainer `
+--backup-typ Log `
+--workload-type MSSQL `
+--backup-management-type AzureWorkload `
+--output table `
+| Out-GridView
+
+
+$dbName          = "myDB"
+$ItemName        = "SQLDataBase;AGPRD;"
+$AGNameContainer = "SQLAGWorkLoadContainer;0xxxxxx-xxx9-xxxx-xxxxx-xxxxxxxxxx" 
+$finalName       = $ItemName + $dbName
+
+Write-Host $finalName
+
+az backup protection backup-now `
+--resource-group rg-myDB-prd `
+--item-name $finalName `
+--vault-name recover-prd `
+--container-name $AGNameContainer `
+--backup-typ FULL `
+--workload-type MSSQL `
+--backup-management-type AzureWorkload `
+--output table `
+| Out-GridView         
+
+az backup job list `
+--resource-group rg-myDB-prd `
+--vault-name recover-prd `
+--backup-management-type AzureWorkload `
+--operation Backup `
+--status InProgress  `
+--output table  `
+| Out-GridView                                             
