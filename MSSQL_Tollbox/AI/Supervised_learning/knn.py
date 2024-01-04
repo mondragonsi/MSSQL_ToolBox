@@ -1,3 +1,10 @@
+'''
+Supervised learning with K-NN - K-Nearest Neighbors, instance based learning
+Author Bruno Mondragon
+'''
+
+
+
 import webbrowser
 import pandas as pd
 import plotly.express as px
