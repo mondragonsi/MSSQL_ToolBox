@@ -1,17 +1,16 @@
 '''
+Author: Bruno Mondragon
 Supervised learning with K-NN - K-Nearest Neighbors, instance based learning
-Author Bruno Mondragon
+Using MSSQL as data source
 '''
 
-
-
 import webbrowser
+import os
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 import plotly.io as pio
 import pyodbc
-import os
+
 
 """# Clear the screen"""
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -62,7 +61,7 @@ y_pred = knn.predict(X)
 fig = px.scatter(df_cancer_igm, x="radius", y="texture", color="diagnosis", size="radius",)
 
 # Predict and print the label for the new data point X_new
-new_prediction = knn.predict([[18, 30]])
+new_prediction = knn.predict([[9, 16]])
 
 print("Prediction: {}".format(new_prediction))
 
@@ -70,9 +69,11 @@ print("Prediction: {}".format(new_prediction))
 # Close the database connection
 conn.close()
 
-# Plotting df_cancer_igm using the columns of df_cancer_igm columns: Radius, texture and diagnosis
+# Plotting df_cancer_igm using the columns of df_cancer_igm columns: Radius, texture and diagnosis and neighboors = 6
 
-fig_cancer_igm = px.scatter(df_cancer_igm, x="radius", y="texture", color="radius", size="radius",)
+
+
+fig_cancer_igm = px.scatter(df_cancer_igm, x="radius", y="texture", color="radius", size="radius", title="Cancer IGM")
 
 
 
